@@ -1,0 +1,171 @@
+\RequirePackage[hyphens]{url}
+\documentclass[11pt,a4paper,titlepage]{article}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\graphicspath{ {./pics/} {./eps/}}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{newfloat}
+\usepackage{float} %img floats
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{enumitem} %fancy itemize list
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{longtable}
+
+%% FLOAT TYPES
+\DeclareFloatingEnvironment[name={Appendix}]{Appendix}
+
+%% COLOR DEFINITIONS
+\usepackage[svgnames]{xcolor} % Enabling mixing colors and color's call by 'svgnames'
+\definecolor{MyColor1}{rgb}{0.2,0.4,0.6} %mix personal color
+\newcommand{\textb}{\color{Black} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blue}{\color{MyColor1} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blueb}{\color{MyColor1} \usefont{OT1}{lmss}{b}{n}}
+
+%% SECTIONS
+\usepackage{titlesec}
+\usepackage{sectsty}
+\usepackage{csquotes}
+
+% CAPTIONS AND REFERENCING
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{nameref}
+
+%% BIBLIOGRAPHY SETTINGS
+\usepackage[style=authoryear,backend=biber,uniquename=init,urldate=long,giveninits=true]{biblatex}
+\setlength\bibitemsep{\baselineskip}
+\addbibresource{bibliography.bib}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
+
+%% DESIGN CIRCUITS
+\usepackage[siunitx, american, smartlabels, cute inductors, europeanvoltages]{circuitikz}
+
+%% APPENDIX SETTINGS
+\usepackage[toc,page,title]{appendix}
+\renewcommand\appendixtocname{Appendices}
+\renewcommand\appendixpagename{Appendices}
+
+%% INCLUDE PDF
+\usepackage{pdfpages}
+
+%% CODE SNIPPET LISTING SETTINGS
+\usepackage{listings}
+\renewcommand\lstlistlistingname{List of Listings}
+\lstset{numbers=left,xleftmargin=2em,captionpos=b}
+\input{./code_definition.tex}
+
+%% PAGE HEADER STYLING
+\usepackage{etoolbox,fancyhdr,xcolor}
+
+%% ACRONYMS
+\usepackage{acronym}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% START OF DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% TITLE PAGE SETTINGS
+\title{\textbf{End-To-End Testing for React Native Applications} \\
+Research Report}
+\author{Sebastian Wilczek}
+\date{\vspace*{\fill} Fontys University of Applied Sciences\\ \bigskip Venlo, \today}
+
+\begin{document}
+
+%% CONFIGURATION OF PAGE HEADER
+\pagestyle{fancy}
+\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
+\newcommand{\footrulecolor}[1]{\patchcmd{\footrule}{\hrule}{\color{#1}\hrule}{}{}}
+\pagestyle{fancy}
+\fancyhf{}% Clear header/footer
+\fancyhead[C]{}
+\fancyhead[R]{\thepage}
+\setlength{\headsep}{33pt}
+\setlength{\headheight}{13.6pt}
+\renewcommand{\headrulewidth}{0.4pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% START OF CONTENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% TITLE PAGE
+\maketitle
+\newpage
+
+%% SET PAGE NUMBERING TO ROMAN
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+%% INFORMATION PAGE
+%% \include{content/informationPage}
+
+%% SUMMARY
+\include{content/summary}
+
+%% STATEMENT OF AUTHORSHIP
+%% \include{content/stmtOfAuthorship}
+
+%% TABLE OF CONTENT
+\tableofcontents
+\newpage
+
+%% LIST OF FIGURES
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\newpage
+
+%% LIST OF TABLES
+%% \addcontentsline{toc}{section}{List of Tables}
+%% \listoftables
+%% \newpage
+
+%% LIST OF LISTINGS
+\addcontentsline{toc}{section}{List of Listings}
+\lstlistoflistings 
+\newpage
+
+%% LIST OF ABBREVIATIONS
+\addcontentsline{toc}{section}{List of Abbreviations}
+\input{content/acronyms}
+\newpage
+
+%% SET PAGE NUMBERING TO ARABIC
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%% INTRODUCTION
+\include{content/introduction}
+
+%% RESEARCH DEFINITION
+\include{content/research_definition}
+
+%% RESEARCH RESULTS
+\include{content/research_results}
+
+%% CONCLUSION
+\include{content/conclusion}
+
+%% BIBLIOGRAPHY
+\newpage
+\addcontentsline{toc}{section}{List of References}
+\lhead{List of References}
+\printbibliography{}
+
+%% APPENDIX
+\newpage
+\lhead{Appendices}
+\include{content/appendix}
+
+\end{document}
